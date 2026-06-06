@@ -3,372 +3,1130 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Queens Peak — Investment Strategy · June 2026</title>
+<title>Queens Peak — Your Property Journey · 2026–2030</title>
 <style>
   :root {
-    --ink: #12202e;
-    --muted: #5a6878;
-    --line: #dde3ea;
-    --paper: #f4f6f9;
+    --ink: #172332;
+    --muted: #647387;
+    --soft: #8b98a8;
+    --line: #dbe4ef;
+    --paper: #eef3f8;
     --panel: #ffffff;
-    --navy: #0c1b33;
-    --slate: #1e3a5f;
-    --sky: #e8f2fc;
-    --blue: #1660a0;
-    --teal: #0a5f6b;
-    --mint: #e8f6f8;
-    --green: #14663a;
-    --leaf: #e6f4ec;
-    --gold: #b07a22;
-    --amber: #fffaed;
-    --red: #a83c28;
-    --rose: #fff2ef;
-    --orange: #e07020;
+    --navy: #091827;
+    --blue: #1769aa;
+    --sky: #e8f3fb;
+    --teal: #0a746a;
+    --mint: #e7f7f4;
+    --green: #167245;
+    --leaf: #e4f6ea;
+    --gold: #a66f16;
+    --amber: #fff7e6;
+    --red: #a73425;
+    --rose: #fff0ed;
+    --orange: #cc5a1f;
+    --shadow: 0 18px 55px rgba(12, 31, 52, 0.13);
   }
+
   * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
   body {
-    background: var(--paper);
+    background:
+      linear-gradient(180deg, rgba(255,255,255,0.82), rgba(238,243,248,0.96) 360px),
+      var(--paper);
     color: var(--ink);
     font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
     font-size: 15px;
-    line-height: 1.6;
+    line-height: 1.62;
+    min-width: 320px;
+  }
+
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+      linear-gradient(rgba(9,24,39,0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(9,24,39,0.035) 1px, transparent 1px);
+    background-size: 32px 32px;
+    mask-image: linear-gradient(to bottom, rgba(0,0,0,0.65), transparent 58%);
+  }
+
+  .wrap,
+  main,
+  .section-label,
+  .steps,
+  .pay-timeline,
+  .money-grid,
+  .stat-row,
+  .result-banner,
+  .plain-box,
+  .footnote,
+  .money-card[style] {
+    width: min(1120px, calc(100% - 48px));
+  }
+
+  main {
+    position: relative;
+    z-index: 1;
+    margin: 0 auto;
+    padding: 34px 0 64px;
   }
 
   /* HERO */
   .hero {
-    background: linear-gradient(135deg, #071326 0%, #0e2a4a 50%, #0a4560 100%);
+    position: relative;
+    overflow: hidden;
+    min-height: 640px;
     color: white;
-    padding: 48px 36px 40px;
+    padding: 42px 24px 68px;
+    display: grid;
+    place-items: center;
+    isolation: isolate;
   }
-  .wrap { max-width: 1060px; margin: 0 auto; }
-  .eyebrow { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #d4a94a; font-weight: 700; margin-bottom: 12px; }
-  h1 { font-size: clamp(26px, 4vw, 46px); line-height: 1.08; margin-bottom: 10px; font-weight: 800; }
-  .hero-sub { color: rgba(255,255,255,0.68); font-size: 15px; margin-bottom: 30px; }
-  .hero-pills { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 32px; }
-  .pill { background: rgba(255,255,255,0.10); border: 1px solid rgba(255,255,255,0.18); padding: 5px 14px; font-size: 12px; color: rgba(255,255,255,0.85); letter-spacing: 0.04em; }
-  .hero-kpis { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
-  .kpi { border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.07); padding: 16px 14px; }
-  .kpi strong { display: block; font-size: 20px; font-weight: 800; color: #fff; margin-bottom: 3px; }
-  .kpi span { font-size: 11px; color: rgba(255,255,255,0.55); text-transform: uppercase; letter-spacing: 0.06em; }
 
-  /* MAIN */
-  main { padding: 24px 36px 56px; }
-  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; max-width: 1060px; margin: 0 auto 16px; }
-  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; max-width: 1060px; margin: 0 auto 16px; }
-  section { background: var(--panel); border: 1px solid var(--line); max-width: 1060px; margin: 0 auto 16px; padding: 24px 26px; }
-  .phase-rental { border-left: 4px solid var(--blue); }
-  .phase-own    { border-left: 4px solid var(--teal); }
-  .phase-exit   { border-left: 4px solid var(--green); }
-  .phase-buy    { border-left: 4px solid var(--gold); }
-  h2 { font-size: 17px; font-weight: 700; margin-bottom: 4px; }
-  .lede { color: var(--muted); font-size: 13px; margin-bottom: 16px; }
-  .badge { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 3px 10px; margin-bottom: 12px; }
-  .badge-blue  { background: var(--sky);  color: var(--blue); }
-  .badge-teal  { background: var(--mint); color: var(--teal); }
-  .badge-green { background: var(--leaf); color: var(--green); }
-  .badge-gold  { background: var(--amber); color: var(--gold); }
+  .hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    background:
+      linear-gradient(90deg, rgba(7,19,34,0.98) 0%, rgba(9,24,39,0.88) 43%, rgba(9,24,39,0.58) 100%),
+      url("Queens Peak 3br.pdf.png") center / cover no-repeat;
+    transform: scale(1.02);
+  }
 
-  /* TABLES */
-  table { width: 100%; border-collapse: collapse; font-size: 13px; }
-  th { background: var(--navy); color: #fff; text-align: left; padding: 9px 10px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.07em; }
-  td { padding: 8px 10px; border-bottom: 1px solid var(--line); }
-  tr:last-child td { border-bottom: none; }
-  .num { text-align: right; font-variant-numeric: tabular-nums; }
-  .pos { color: var(--green); font-weight: 700; }
-  .neg { color: var(--red); font-weight: 700; }
-  .total-row td { background: #f0f4f8; font-weight: 700; border-top: 2px solid var(--line); }
+  .hero::after {
+    content: "";
+    position: absolute;
+    inset: auto 0 0;
+    height: 190px;
+    z-index: -1;
+    background: linear-gradient(to bottom, transparent, var(--paper));
+  }
 
-  /* TIMELINE */
-  .timeline { display: flex; align-items: stretch; gap: 0; margin-bottom: 20px; border: 1px solid var(--line); overflow: hidden; }
-  .tl-seg { flex: 1; padding: 14px 16px; position: relative; }
-  .tl-seg-wide { flex: 3; }
-  .tl-blue  { background: var(--sky); border-right: 1px solid var(--line); }
-  .tl-teal  { background: var(--mint); border-right: 1px solid var(--line); }
-  .tl-green { background: var(--leaf); }
-  .tl-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 700; margin-bottom: 4px; }
-  .tl-blue .tl-label  { color: var(--blue); }
-  .tl-teal .tl-label  { color: var(--teal); }
-  .tl-green .tl-label { color: var(--green); }
-  .tl-date  { font-size: 14px; font-weight: 700; margin-bottom: 2px; }
-  .tl-note  { font-size: 11px; color: var(--muted); }
+  .hero-inner {
+    width: min(1120px, 100%);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: minmax(0, 1.04fr) minmax(320px, 0.76fr);
+    gap: 34px;
+    align-items: end;
+  }
 
-  /* STAT CARDS */
-  .stat-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
-  .sc { border: 1px solid var(--line); padding: 16px; background: var(--paper); }
-  .sc-val { font-size: 22px; font-weight: 800; margin-bottom: 2px; }
-  .sc-lbl { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
-  .sc-sub { font-size: 12px; color: var(--muted); margin-top: 4px; }
+  .hero-copy { padding-top: 20px; }
 
-  /* VERDICT */
-  .verdict { background: linear-gradient(135deg, #071326 0%, #0e2a4a 100%); color: white; padding: 28px 30px; max-width: 1060px; margin: 0 auto 16px; }
-  .verdict h2 { color: white; font-size: 20px; margin-bottom: 12px; }
-  .verdict-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
-  .vg { border-left: 3px solid rgba(255,255,255,0.25); padding-left: 14px; }
-  .vg strong { display: block; font-size: 13px; color: #d4a94a; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.06em; }
-  .vg p { font-size: 13px; color: rgba(255,255,255,0.80); line-height: 1.5; }
+  .hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,255,255,0.10);
+    border: 1px solid rgba(255,255,255,0.22);
+    color: #ffd778;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    padding: 8px 12px;
+    margin-bottom: 20px;
+    backdrop-filter: blur(14px);
+  }
+
+  .hero h1 {
+    max-width: 740px;
+    font-size: clamp(38px, 6vw, 72px);
+    font-weight: 900;
+    line-height: 0.98;
+    margin-bottom: 18px;
+    text-wrap: balance;
+  }
+
+  .hero h1 span {
+    color: #75d5d0;
+  }
+
+  .hero-desc {
+    color: rgba(255,255,255,0.74);
+    font-size: clamp(16px, 2vw, 19px);
+    max-width: 670px;
+    margin-bottom: 34px;
+  }
+
+  .hero-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    max-width: 780px;
+  }
+
+  .hs {
+    min-height: 116px;
+    padding: 18px;
+    border: 1px solid rgba(255,255,255,0.18);
+    border-radius: 8px;
+    background: rgba(255,255,255,0.10);
+    box-shadow: 0 20px 45px rgba(0,0,0,0.16);
+    backdrop-filter: blur(18px);
+  }
+
+  .hs strong {
+    display: block;
+    font-size: clamp(24px, 3vw, 34px);
+    font-weight: 900;
+    color: #fff;
+    letter-spacing: 0;
+    line-height: 1.02;
+  }
+
+  .hs em {
+    display: block;
+    margin-top: 10px;
+    font-style: normal;
+    font-size: 11px;
+    color: rgba(255,255,255,0.60);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .hs.highlight {
+    background: rgba(117,213,208,0.15);
+    border-color: rgba(117,213,208,0.46);
+  }
+
+  .hs.highlight strong { color: #8cf2cf; }
+
+  .hero-visual {
+    align-self: stretch;
+    min-height: 420px;
+    display: grid;
+    align-content: end;
+    gap: 12px;
+  }
+
+  .visual-frame {
+    background: rgba(255,255,255,0.92);
+    border: 1px solid rgba(255,255,255,0.58);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 34px 80px rgba(0,0,0,0.32);
+  }
+
+  .visual-frame img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 1.22;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .visual-caption {
+    display: flex;
+    justify-content: space-between;
+    gap: 14px;
+    padding: 12px 14px;
+    color: #233445;
+    font-size: 12px;
+    background: #fff;
+    border-top: 1px solid var(--line);
+  }
+
+  .visual-caption strong {
+    display: block;
+    font-size: 13px;
+  }
+
+  .visual-caption span {
+    color: var(--muted);
+    text-align: right;
+  }
+
+  /* PROPERTY CARD */
+  .prop-card {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    max-width: 1120px;
+    margin: 0 auto 28px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+  }
+
+  .prop-header {
+    background: var(--navy);
+    color: white;
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .prop-header h2 { font-size: 16px; font-weight: 750; }
+
+  .step-num {
+    width: 32px;
+    height: 32px;
+    background: rgba(255,255,255,0.15);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+
+  .prop-body { padding: 24px; }
+
+  /* PLAIN ENGLISH BOX */
+  .plain-box {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1.12fr) minmax(280px, 0.88fr);
+    gap: 28px;
+    align-items: center;
+    background: var(--panel);
+    border: 1px solid rgba(166,111,22,0.26);
+    border-radius: 8px;
+    margin: -64px auto 28px;
+    padding: 28px;
+    box-shadow: var(--shadow);
+  }
+
+  .plain-box::after {
+    content: "";
+    display: block;
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    min-height: 330px;
+    border-radius: 8px;
+    border: 1px solid var(--line);
+    background:
+      linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.78)),
+      url("queens936.png") center / contain no-repeat,
+      #f8fbff;
+    box-shadow: inset 0 0 0 8px rgba(255,255,255,0.72);
+  }
+
+  .plain-box h3 {
+    grid-column: 1;
+    font-size: 23px;
+    line-height: 1.18;
+    font-weight: 900;
+    color: var(--ink);
+    margin-bottom: 16px;
+  }
+
+  .plain-box h3::after {
+    content: "Floor 28 strategy snapshot";
+    display: block;
+    margin-top: 7px;
+    color: var(--gold);
+    font-size: 11px;
+    font-weight: 850;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .plain-box ul {
+    grid-column: 1;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .plain-box li {
+    display: grid;
+    grid-template-columns: 38px 1fr;
+    gap: 12px;
+    align-items: start;
+    font-size: 14px;
+    color: #3f4a58;
+    line-height: 1.52;
+  }
+
+  .plain-box li::before {
+    content: attr(data-icon);
+    width: 38px;
+    height: 38px;
+    display: grid;
+    place-items: center;
+    border-radius: 8px;
+    background: var(--amber);
+    border: 1px solid #f0d8a0;
+    font-size: 18px;
+    line-height: 1;
+  }
+
+  /* SECTION TITLE */
+  .section-label {
+    margin: 34px auto 14px;
+    font-size: 12px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .section-label::before {
+    content: "";
+    width: 9px;
+    height: 9px;
+    border-radius: 99px;
+    background: var(--gold);
+    box-shadow: 0 0 0 5px rgba(166,111,22,0.12);
+  }
+
+  .section-label::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, var(--line), transparent);
+  }
+
+  /* JOURNEY STEPS */
+  .journey { max-width: 1120px; margin: 0 auto 32px; }
+
+  .journey-title {
+    font-size: 13px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    margin-bottom: 16px;
+    text-align: center;
+  }
+
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin: 0 auto 32px;
+  }
+
+  .step {
+    position: relative;
+    min-height: 178px;
+    padding: 22px 18px 20px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--panel);
+    box-shadow: 0 12px 34px rgba(12,31,52,0.08);
+  }
+
+  .step::after {
+    content: "";
+    position: absolute;
+    top: 28px;
+    left: 28px;
+    bottom: 20px;
+    width: 2px;
+    background: linear-gradient(var(--line), transparent);
+  }
+
+  .step-dot {
+    position: relative;
+    z-index: 1;
+    width: 17px;
+    height: 17px;
+    border-radius: 50%;
+    margin-bottom: 18px;
+    border: 4px solid #fff;
+    box-shadow: 0 0 0 1px var(--line), 0 8px 20px rgba(0,0,0,0.16);
+  }
+
+  .dot-gold  { background: #d4a94a; }
+  .dot-blue  { background: var(--blue); }
+  .dot-teal  { background: var(--teal); }
+  .dot-green { background: var(--green); }
+
+  .step-when {
+    font-size: 11px;
+    font-weight: 850;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    margin-bottom: 5px;
+  }
+
+  .step-what {
+    font-size: 17px;
+    font-weight: 900;
+    margin-bottom: 7px;
+  }
+
+  .step-note {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.45;
+  }
+
+  /* MONEY CARDS */
+  .money-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    margin: 0 auto 26px;
+  }
+
+  .money-card {
+    background: rgba(255,255,255,0.94);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 14px 42px rgba(12,31,52,0.08);
+  }
+
+  .mc-head {
+    padding: 16px 20px;
+    font-size: 13px;
+    font-weight: 850;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .mc-blue  .mc-head { background: var(--sky);  color: var(--blue); }
+  .mc-teal  .mc-head { background: var(--mint); color: var(--teal); }
+  .mc-green .mc-head { background: var(--leaf); color: var(--green); }
+  .mc-gold  .mc-head { background: var(--amber); color: var(--gold); }
+
+  .mc-body { padding: 20px; }
+
+  .mc-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 14px;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--line);
+    font-size: 14px;
+  }
+
+  .mc-row:last-child { border-bottom: none; }
+
+  .mc-row.total {
+    font-weight: 900;
+    font-size: 15px;
+    padding: 14px 0 10px;
+    margin-top: 4px;
+    border-bottom: none;
+    border-top: 2px solid var(--ink);
+  }
+
+  .mc-label { color: var(--ink); }
+
+  .mc-val {
+    font-weight: 850;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+
+  .plus  { color: var(--green); }
+  .minus { color: var(--red); }
+  .neutral { color: var(--ink); }
+
+  /* HIGHLIGHT BOXES */
+  .highlight-box {
+    padding: 18px 20px;
+    margin-top: 16px;
+    border-radius: 8px;
+    border: 1px solid transparent;
+  }
+
+  .hb-blue  { background: var(--sky);  border-color: #b9d9f0; }
+  .hb-teal  { background: var(--mint); border-color: #a8dcd5; }
+  .hb-green { background: var(--leaf); border-color: #add8be; }
+  .hb-amber { background: var(--amber); border-color: #f0d8a0; }
+
+  .hb-title {
+    font-size: 11px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+
+  .hb-val {
+    font-size: clamp(24px, 3vw, 32px);
+    font-weight: 950;
+    letter-spacing: 0;
+    line-height: 1.08;
+    margin-bottom: 4px;
+  }
+
+  .hb-desc { font-size: 13px; color: var(--muted); }
+  .hb-blue .hb-val  { color: var(--blue); }
+  .hb-teal .hb-val  { color: var(--teal); }
+  .hb-green .hb-val { color: var(--green); }
+  .hb-amber .hb-val { color: var(--gold); }
+
+  /* STAT ROW */
+  .stat-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin: 0 auto 26px;
+  }
+
+  .sr {
+    min-height: 152px;
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 22px 20px;
+    text-align: left;
+    box-shadow: 0 12px 34px rgba(12,31,52,0.07);
+  }
+
+  .sr-val {
+    font-size: clamp(25px, 3vw, 34px);
+    font-weight: 950;
+    letter-spacing: 0;
+    margin-bottom: 7px;
+    line-height: 1.05;
+  }
+
+  .sr-lbl {
+    font-size: 12px;
+    color: var(--ink);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-weight: 850;
+  }
+
+  .sr-sub {
+    font-size: 12.5px;
+    color: var(--muted);
+    margin-top: 8px;
+    line-height: 1.45;
+  }
+
+  /* RESULT BANNER */
+  .result-banner {
+    position: relative;
+    overflow: hidden;
+    background:
+      linear-gradient(120deg, rgba(9,24,39,0.97), rgba(9,45,73,0.95)),
+      url("queens_peak_c1_unit_actual_crop.png") center / cover no-repeat;
+    color: white;
+    margin: 0 auto 26px;
+    padding: 34px;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+  }
+
+  .result-banner::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, rgba(9,24,39,0.94), rgba(9,24,39,0.52));
+  }
+
+  .result-banner > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .rb-label {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: rgba(255,255,255,0.58);
+    margin-bottom: 12px;
+    font-weight: 850;
+  }
+
+  .rb-grid {
+    display: grid;
+    grid-template-columns: 1.06fr 0.94fr 0.94fr;
+    gap: 26px;
+  }
+
+  .rb-num {
+    font-size: clamp(32px, 4vw, 46px);
+    font-weight: 950;
+    letter-spacing: 0;
+    color: #8df3cc;
+    line-height: 1.02;
+  }
+
+  .rb-desc {
+    font-size: 13px;
+    color: rgba(255,255,255,0.70);
+    margin-top: 8px;
+    line-height: 1.45;
+  }
+
+  .rb-divider {
+    border-left: 1px solid rgba(255,255,255,0.18);
+    padding-left: 26px;
+  }
 
   /* PAYMENT TIMELINE */
-  .pay-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border: 1px solid var(--line); overflow: hidden; }
-  .pay-step { padding: 14px 16px; border-right: 1px solid var(--line); }
-  .pay-step:last-child { border-right: none; }
-  .pay-date { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 6px; }
-  .pay-event { font-size: 13px; font-weight: 700; margin-bottom: 4px; }
-  .pay-amount { font-size: 18px; font-weight: 800; color: var(--blue); }
-  .pay-note { font-size: 11px; color: var(--muted); margin-top: 3px; }
+  .pay-timeline {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    margin: 0 auto 30px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    overflow: hidden;
+    background: var(--panel);
+    box-shadow: 0 14px 42px rgba(12,31,52,0.08);
+  }
 
-  @media (max-width: 700px) {
-    .hero-kpis { grid-template-columns: repeat(2, 1fr); }
-    .grid2, .grid3, .stat-cards, .verdict-grid { grid-template-columns: 1fr; }
-    .pay-steps { grid-template-columns: 1fr 1fr; }
-    .timeline { flex-direction: column; }
+  .pt {
+    position: relative;
+    padding: 22px 18px 20px;
+    border-right: 1px solid var(--line);
+  }
+
+  .pt:last-child { border-right: none; }
+
+  .pt::before {
+    content: "";
+    display: block;
+    width: 34px;
+    height: 4px;
+    border-radius: 999px;
+    background: var(--blue);
+    margin-bottom: 18px;
+  }
+
+  .pt:nth-child(2)::before { background: var(--teal); }
+  .pt:nth-child(3)::before { background: var(--gold); }
+  .pt:nth-child(4)::before { background: var(--green); }
+
+  .pt-date {
+    font-size: 10px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    margin-bottom: 7px;
+  }
+
+  .pt-action {
+    font-size: 14px;
+    font-weight: 900;
+    margin-bottom: 7px;
+    line-height: 1.25;
+  }
+
+  .pt-amount {
+    font-size: 24px;
+    font-weight: 950;
+    color: var(--blue);
+    margin-bottom: 5px;
+    line-height: 1.08;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .pt-note {
+    font-size: 11.5px;
+    color: var(--muted);
+    line-height: 1.45;
+  }
+
+  /* FOOTER */
+  .footnote {
+    margin: 0 auto;
+    font-size: 11.5px;
+    color: #7a8796;
+    line-height: 1.7;
+    border-top: 1px solid var(--line);
+    padding-top: 22px;
+  }
+
+  @media (max-width: 900px) {
+    .hero { min-height: auto; padding-bottom: 92px; }
+    .hero-inner { grid-template-columns: 1fr; }
+    .hero-visual { min-height: auto; }
+    .visual-frame img { aspect-ratio: 1.55; }
+    .plain-box { grid-template-columns: 1fr; margin-top: -70px; }
+    .plain-box::after { grid-column: 1; grid-row: auto; min-height: 300px; }
+    .steps, .pay-timeline { grid-template-columns: repeat(2, 1fr); }
+    .money-grid, .rb-grid, .stat-row { grid-template-columns: 1fr; }
+    .rb-divider {
+      border-left: none;
+      padding-left: 0;
+      border-top: 1px solid rgba(255,255,255,0.18);
+      padding-top: 22px;
+    }
+  }
+
+  @media (max-width: 680px) {
+    .wrap,
+    main,
+    .section-label,
+    .steps,
+    .pay-timeline,
+    .money-grid,
+    .stat-row,
+    .result-banner,
+    .plain-box,
+    .footnote,
+    .money-card[style] {
+      width: min(100% - 28px, 1120px);
+    }
+
+    main { padding-bottom: 48px; }
+    .hero { padding: 30px 14px 78px; }
+    .hero-tag { font-size: 10px; line-height: 1.4; }
+    .hero h1 { font-size: clamp(34px, 11vw, 54px); }
+    .hero-stats { grid-template-columns: 1fr; }
+    .hs { min-height: auto; }
+    .visual-frame img { aspect-ratio: 1.2; }
+    .plain-box { padding: 20px; }
+    .plain-box::after { min-height: 230px; }
+    .plain-box li { grid-template-columns: 34px 1fr; font-size: 13.5px; }
+    .plain-box li::before { width: 34px; height: 34px; }
+    .steps, .pay-timeline { grid-template-columns: 1fr; }
+    .pt { border-right: none; border-bottom: 1px solid var(--line); }
+    .pt:last-child { border-bottom: none; }
+    .mc-row { grid-template-columns: 1fr; gap: 2px; }
+    .mc-val { white-space: normal; }
+    .result-banner { padding: 24px 20px; }
   }
 </style>
 </head>
 <body>
 
-<!-- HERO -->
+<!-- ── HERO ── -->
 <div class="hero">
-  <div class="wrap">
-    <div class="eyebrow">Queens Peak · District 03 · Investment Strategy</div>
-    <h1>Buy. Rent. Stay. Exit.</h1>
-    <p class="hero-sub">936 sqft · 3BR · Floor 28 · Dundee Road, Queenstown · 4-Year Horizon · Jun 2026 – Jun 2030</p>
-    <div class="hero-pills">
-      <span class="pill">99-yr Leasehold</span>
-      <span class="pill">Queenstown MRT ~4 min covered</span>
-      <span class="pill">PSF S$2,243 strata</span>
-      <span class="pill">True indoor 850 sqft (90.8% efficiency)</span>
-      <span class="pill">SSD-free from Jun 2029</span>
+  <div class="hero-inner">
+    <div class="hero-copy">
+      <div class="hero-tag">Queens Peak · District 03 · Floor 28 · 936 sqft · 3 Bedrooms</div>
+      <h1>Buy. <span>Rent it out.</span><br>Move in. Sell.</h1>
+      <p class="hero-desc">A 4-year ownership playbook that turns a S$2.1M purchase into a projected profit, with rental income carrying most of the mortgage before you move in.</p>
+      <div class="hero-stats">
+        <div class="hs">
+          <strong>S$2.1M</strong>
+          <em>Purchase Price</em>
+        </div>
+        <div class="hs highlight">
+          <strong>S$151,045</strong>
+          <em>Your Profit in 4 Years</em>
+        </div>
+        <div class="hs">
+          <strong>6.27%/yr</strong>
+          <em>Return on Your Money</em>
+        </div>
+      </div>
     </div>
-    <div class="hero-kpis">
-      <div class="kpi"><strong>S$2,100,000</strong><span>Purchase Price</span></div>
-      <div class="kpi"><strong>S$2,177,600</strong><span>All-In Cost</span></div>
-      <div class="kpi"><strong>S$6,225</strong><span>Monthly Mortgage</span></div>
-      <div class="kpi"><strong>S$160,624</strong><span>Net Profit (4yr)</span></div>
-      <div class="kpi"><strong>6.66%</strong><span>Ann. Return on Cash</span></div>
+    <div class="hero-visual" aria-label="Queens Peak unit plan preview">
+      <div class="visual-frame">
+        <img src="queens936_proposed_clean.png" alt="Queens Peak 936 sqft proposed space plan">
+        <div class="visual-caption">
+          <strong>936 sqft C1 layout</strong>
+          <span>3BR · high floor · rental-ready configuration</span>
+        </div>
+      </div>
     </div>
   </div>
 </div>
 
 <main>
 
-  <!-- TIMELINE VISUAL -->
-  <section style="padding: 20px 26px;">
-    <div class="wrap" style="max-width:100%">
-      <div class="timeline">
-        <div class="tl-seg tl-blue tl-seg-wide">
-          <div class="tl-label">Phase 1 — Rent Out</div>
-          <div class="tl-date">Jun 2026 → Jun 2029</div>
-          <div class="tl-note">36 months · S$5,800/mo rental · −S$1,775/mo net shortfall</div>
-        </div>
-        <div class="tl-seg tl-teal">
-          <div class="tl-label">Phase 2 — Own Stay</div>
-          <div class="tl-date">Jun 2029 → Jun 2030</div>
-          <div class="tl-note">12 months · SSD 0% · live in your unit</div>
-        </div>
-        <div class="tl-seg tl-green">
-          <div class="tl-label">Exit</div>
-          <div class="tl-date">Jun 2030</div>
-          <div class="tl-note">Sell at S$2,290,045 · Net +S$160,624</div>
-        </div>
-      </div>
-    </div>
-  </section>
+<!-- ── PLAIN ENGLISH SUMMARY ── -->
+<div class="plain-box">
+  <h3>The Plan</h3>
+  <ul>
+    <li data-icon="🏠">You buy a 3-bedroom unit on the 28th floor of Queens Peak in June 2026. Bank lends you 75%. You put in the rest.</li>
+    <li data-icon="🔑">You get the keys in September 2026 and immediately find a tenant who pays S$5,800/month in rent.</li>
+    <li data-icon="💸">The rent almost covers your monthly mortgage of S$5,360. You top up only S$910/month extra — less than what many pay in car instalments.</li>
+    <li data-icon="📅">After 3 years (June 2029), government stamp duty clears. You move in and live there for 1 year.</li>
+    <li data-icon="🤝">In June 2030, you sell the unit. Property has appreciated. After paying back the bank and all costs, you pocket S$151,045 in profit.</li>
+  </ul>
+</div>
 
-  <!-- PURCHASE & FINANCING -->
-  <section class="phase-buy">
-    <span class="badge badge-gold">Purchase · Jun 2026</span>
-    <h2>Acquisition & Financing</h2>
-    <p class="lede">1.4% fixed rate · 25-year tenure · Monthly payment S$6,225</p>
-    <div class="grid2" style="max-width:100%; margin: 0 0 0 0;">
-      <table>
-        <thead><tr><th>Fund Source</th><th>%</th><th class="num">Amount</th></tr></thead>
-        <tbody>
-          <tr><td>OTP (1% cash)</td><td>1%</td><td class="num">S$21,000</td></tr>
-          <tr><td>Exercise (4% cash)</td><td>4%</td><td class="num">S$84,000</td></tr>
-          <tr><td>Downpayment — CPF</td><td>~10%</td><td class="num">S$200,000</td></tr>
-          <tr><td>Downpayment — Cash</td><td>~10%</td><td class="num">S$220,000</td></tr>
-          <tr><td>Bank Loan</td><td>75%</td><td class="num">S$1,575,000</td></tr>
-          <tr class="total-row"><td colspan="2">Purchase Total</td><td class="num">S$2,100,000</td></tr>
-        </tbody>
-      </table>
-      <table>
-        <thead><tr><th>Additional Costs</th><th class="num">Amount</th><th>Source</th></tr></thead>
-        <tbody>
-          <tr><td>Buyer Stamp Duty</td><td class="num">S$74,600</td><td>Cash</td></tr>
-          <tr><td>Legal Fee</td><td class="num">S$3,000</td><td>Cash</td></tr>
-          <tr class="total-row"><td>Total Own Funds In</td><td class="num">S$602,600</td><td>Cash + CPF</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <!-- Payment Steps -->
-    <div class="pay-steps" style="margin-top: 16px;">
-      <div class="pay-step">
-        <div class="pay-date">1 Jun 2026</div>
-        <div class="pay-event">Option (OTP)</div>
-        <div class="pay-amount">S$21,000</div>
-        <div class="pay-note">1% cash</div>
-      </div>
-      <div class="pay-step">
-        <div class="pay-date">15 Jun 2026</div>
-        <div class="pay-event">Exercise + Legal</div>
-        <div class="pay-amount">S$87,000</div>
-        <div class="pay-note">4% cash + S$3,000 legal</div>
-      </div>
-      <div class="pay-step">
-        <div class="pay-date">29 Jun 2026</div>
-        <div class="pay-event">Stamp Duty</div>
-        <div class="pay-amount">S$74,600</div>
-        <div class="pay-note">BSD cash</div>
-      </div>
-      <div class="pay-step">
-        <div class="pay-date">~7 Sep 2026</div>
-        <div class="pay-event">Completion</div>
-        <div class="pay-amount">S$420,000</div>
-        <div class="pay-note">CPF S$200K + Cash S$220K · Loan disburses</div>
-      </div>
-    </div>
-  </section>
-
-  <div class="grid2">
-    <!-- PHASE 1 -->
-    <section class="phase-rental" style="margin: 0;">
-      <span class="badge badge-blue">Phase 1 · Jun 2026 – Jun 2029</span>
-      <h2>Rent Out — 36 Months</h2>
-      <p class="lede">Tenant pays S$5,800/mo · You stay rent-free at home</p>
-      <table>
-        <thead><tr><th>Item</th><th class="num">Monthly</th><th class="num">36-Month Total</th></tr></thead>
-        <tbody>
-          <tr><td>Rent Collected</td><td class="num pos">+S$5,800</td><td class="num pos">+S$208,800</td></tr>
-          <tr><td>Mortgage Payment</td><td class="num neg">−S$6,225</td><td class="num neg">−S$224,110</td></tr>
-          <tr><td>Maintenance & Sinking Fund</td><td class="num neg">−S$400</td><td class="num neg">−S$14,400</td></tr>
-          <tr><td>Property Tax (Non-OO)</td><td class="num neg">−S$708</td><td class="num neg">−S$25,500</td></tr>
-          <tr><td>Letting Agent (½ mo/yr)</td><td class="num neg">−S$242</td><td class="num neg">−S$8,700</td></tr>
-          <tr class="total-row"><td>Net Cash Flow</td><td class="num neg">−S$1,775</td><td class="num neg">−S$63,910</td></tr>
-        </tbody>
-      </table>
-      <div class="stat-cards" style="margin-top: 14px;">
-        <div class="sc">
-          <div class="sc-val pos">S$161,228</div>
-          <div class="sc-lbl">Principal (Equity) Built</div>
-        </div>
-        <div class="sc">
-          <div class="sc-val">S$1,413,772</div>
-          <div class="sc-lbl">Loan Remaining (Jun 29)</div>
-        </div>
-        <div class="sc">
-          <div class="sc-val pos">0%</div>
-          <div class="sc-lbl">SSD from Jun 2029</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- PHASE 2 -->
-    <section class="phase-own" style="margin: 0;">
-      <span class="badge badge-teal">Phase 2 · Jun 2029 – Jun 2030</span>
-      <h2>Own Stay — 12 Months</h2>
-      <p class="lede">Move in · No SSD liability · Live in your own floor-28 unit</p>
-      <table>
-        <thead><tr><th>Item</th><th class="num">Monthly</th><th class="num">12-Month Total</th></tr></thead>
-        <tbody>
-          <tr><td>Mortgage Payment</td><td class="num neg">−S$6,225</td><td class="num neg">−S$74,703</td></tr>
-          <tr><td>Maintenance & Sinking Fund</td><td class="num neg">−S$400</td><td class="num neg">−S$4,800</td></tr>
-          <tr><td>Property Tax (Owner-Occ.)</td><td class="num neg">−S$167</td><td class="num neg">−S$2,000</td></tr>
-          <tr class="total-row"><td>Total Cost of Living</td><td class="num neg">−S$6,792</td><td class="num neg">−S$81,503</td></tr>
-        </tbody>
-      </table>
-      <div class="stat-cards" style="margin-top: 14px;">
-        <div class="sc">
-          <div class="sc-val">S$1,358,508</div>
-          <div class="sc-lbl">Loan Remaining (Jun 30)</div>
-        </div>
-        <div class="sc">
-          <div class="sc-val pos">S$216,492</div>
-          <div class="sc-lbl">Total Principal Paid (4yr)</div>
-        </div>
-        <div class="sc">
-          <div class="sc-val" style="color: var(--teal)">Floor 28</div>
-          <div class="sc-lbl">936 sqft · City-fringe view</div>
-        </div>
-      </div>
-    </section>
+<!-- ── YOUR JOURNEY ── -->
+<div class="section-label">Your 4-Step Journey</div>
+<div class="steps">
+  <div class="step">
+    <div class="step-dot dot-gold"></div>
+    <div class="step-when">June 2026</div>
+    <div class="step-what">Sign & Pay</div>
+    <div class="step-note">Pay option fee, exercise, stamp duty &amp; legal. Loan approved.</div>
   </div>
+  <div class="step">
+    <div class="step-dot dot-blue"></div>
+    <div class="step-when">Sep 2026 – Jun 2029</div>
+    <div class="step-what">Rent It Out</div>
+    <div class="step-note">Tenant pays S$5,800/mo. You top up S$910/mo. Let it run.</div>
+  </div>
+  <div class="step">
+    <div class="step-dot dot-teal"></div>
+    <div class="step-when">Jun 2029 – Jun 2030</div>
+    <div class="step-what">Move In</div>
+    <div class="step-note">Stamp duty penalty gone. Live in your own floor-28 home.</div>
+  </div>
+  <div class="step">
+    <div class="step-dot dot-green"></div>
+    <div class="step-when">June 2030</div>
+    <div class="step-what">Sell &amp; Profit</div>
+    <div class="step-note">Property worth ~S$2.29M. Walk away with S$151K profit.</div>
+  </div>
+</div>
 
-  <!-- EXIT -->
-  <section class="phase-exit">
-    <span class="badge badge-green">Exit · Jun 2030</span>
-    <h2>Property Value & Net Return</h2>
-    <p class="lede">Dev-wide 3BR appreciation slope: +S$4.23 PSF/month · 48 months total</p>
-    <div class="grid2" style="max-width:100%; margin: 0;">
-      <table>
-        <thead><tr><th>Property Value</th><th class="num">Amount</th></tr></thead>
-        <tbody>
-          <tr><td>Purchase PSF (Jun 2026)</td><td class="num">S$2,243</td></tr>
-          <tr><td>Appreciation (+S$4.23 × 48 mo)</td><td class="num pos">+S$203 PSF</td></tr>
-          <tr><td>Jun 2030 PSF</td><td class="num">S$2,447</td></tr>
-          <tr><td>Jun 2030 Value (× 936 sqft)</td><td class="num">S$2,290,045</td></tr>
-          <tr class="total-row"><td>Gross Gain</td><td class="num pos">+S$190,045</td></tr>
-        </tbody>
-      </table>
-      <table>
-        <thead><tr><th>Net Position</th><th class="num">Amount</th></tr></thead>
-        <tbody>
-          <tr><td>Sale Proceeds</td><td class="num">S$2,290,045</td></tr>
-          <tr><td>Less Agent Fee (1%)</td><td class="num neg">−S$22,900</td></tr>
-          <tr><td>Less Loan Outstanding</td><td class="num neg">−S$1,358,508</td></tr>
-          <tr><td>Net from Sale</td><td class="num">S$908,637</td></tr>
-          <tr><td>Less Phase 1 Shortfall</td><td class="num neg">−S$63,910</td></tr>
-          <tr><td>Less Phase 2 Cost</td><td class="num neg">−S$81,503</td></tr>
-          <tr><td>Less Own Funds Invested</td><td class="num neg">−S$602,600</td></tr>
-          <tr class="total-row"><td>Net Profit</td><td class="num pos">+S$160,624</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="stat-cards" style="margin-top: 16px; grid-template-columns: repeat(4, 1fr);">
-      <div class="sc">
-        <div class="sc-val pos">S$160,624</div>
-        <div class="sc-lbl">Net Profit</div>
-        <div class="sc-sub">After all costs & loan</div>
-      </div>
-      <div class="sc">
-        <div class="sc-val pos">6.66%</div>
-        <div class="sc-lbl">Ann. Return on Cash</div>
-        <div class="sc-sub">On S$602,600 invested</div>
-      </div>
-      <div class="sc">
-        <div class="sc-val pos">S$216,492</div>
-        <div class="sc-lbl">Equity Built (Principal)</div>
-        <div class="sc-sub">Loan repaid in 4 years</div>
-      </div>
-      <div class="sc">
-        <div class="sc-val pos">0%</div>
-        <div class="sc-lbl">Seller Stamp Duty</div>
-        <div class="sc-sub">Past 3-year SSD mark</div>
-      </div>
-    </div>
-  </section>
+<!-- ── HOW MUCH YOU PAY UPFRONT ── -->
+<div class="section-label">What You Pay &amp; When</div>
+<div class="pay-timeline">
+  <div class="pt">
+    <div class="pt-date">1 Jun 2026</div>
+    <div class="pt-action">Option to Purchase</div>
+    <div class="pt-amount">S$21,000</div>
+    <div class="pt-note">1% of price · Secures the unit for you</div>
+  </div>
+  <div class="pt">
+    <div class="pt-date">15 Jun 2026</div>
+    <div class="pt-action">Exercise &amp; Legal</div>
+    <div class="pt-amount">S$87,000</div>
+    <div class="pt-note">4% + S$3,000 legal · Deal is now locked</div>
+  </div>
+  <div class="pt">
+    <div class="pt-date">29 Jun 2026</div>
+    <div class="pt-action">Stamp Duty</div>
+    <div class="pt-amount">S$74,600</div>
+    <div class="pt-note">Government tax · Paid once, done</div>
+  </div>
+  <div class="pt">
+    <div class="pt-date">~7 Sep 2026</div>
+    <div class="pt-action">Completion Day</div>
+    <div class="pt-amount">S$420,000</div>
+    <div class="pt-note">CPF S$200K + Cash S$220K · Bank releases S$1.575M loan · You get the keys!</div>
+  </div>
+</div>
 
-  <!-- VERDICT -->
-  <div class="verdict">
-    <h2>Expert Verdict</h2>
-    <div class="verdict-grid">
-      <div class="vg">
-        <strong>Why It Works</strong>
-        <p>At 1.4% interest, your borrowing cost (S$1,838/mo interest) is far below market rent (S$5,800–7,000/mo). Rental income almost entirely covers the mortgage. You build S$216K in equity while the asset appreciates. SSD window closes naturally at Jun 2029 — no forced timing.</p>
+<!-- ── WHERE THE MONEY COMES FROM ── -->
+<div class="section-label">How the Purchase is Funded</div>
+<div class="stat-row">
+  <div class="sr">
+    <div class="sr-val" style="color:var(--blue)">S$1,575,000</div>
+    <div class="sr-lbl">Bank Loan (75%)</div>
+    <div class="sr-sub">Repaid over 30 years at 1.4% p.a.</div>
+  </div>
+  <div class="sr">
+    <div class="sr-val" style="color:var(--teal)">S$200,000</div>
+    <div class="sr-lbl">Your CPF (10%)</div>
+    <div class="sr-sub">Used at completion</div>
+  </div>
+  <div class="sr">
+    <div class="sr-val" style="color:var(--orange)">S$402,600</div>
+    <div class="sr-lbl">Your Cash (rest)</div>
+    <div class="sr-sub">S$325K downpayment + S$77.6K taxes &amp; legal</div>
+  </div>
+</div>
+
+<!-- ── PHASE 1 & 2 ── -->
+<div class="section-label">Phase Breakdown</div>
+<div class="money-grid">
+
+  <!-- PHASE 1 -->
+  <div class="money-card mc-blue">
+    <div class="mc-head">
+      <span>📤</span> Phase 1 — Rent It Out &nbsp;·&nbsp; Sep 2026 to Jun 2029 (33 months)
+    </div>
+    <div class="mc-body">
+      <div class="mc-row">
+        <span class="mc-label">Rent you receive each month</span>
+        <span class="mc-val plus">+S$5,800</span>
       </div>
-      <div class="vg">
-        <strong>The Trade-off</strong>
-        <p>Phase 1 runs a S$1,775/month shortfall in cash (after all holding costs). Over 3 years that's S$63,910 you fund from savings. Phase 2 costs S$6,792/month to live. Total additional cash beyond initial S$602,600: ~S$145,413 across 4 years.</p>
+      <div class="mc-row">
+        <span class="mc-label">Mortgage you pay each month</span>
+        <span class="mc-val minus">−S$5,360</span>
       </div>
-      <div class="vg">
-        <strong>Bottom Line</strong>
-        <p>Buy at S$2.1M. Rent until SSD clears (Jun 2029). Move in for 1 year. Sell Jun 2030. Net profit S$160,624 at 6.66%/yr annualised — comfortably above CPF OA (2.5%) and fixed deposits. Clean, structured, and SSD-free.</p>
+      <div class="mc-row">
+        <span class="mc-label">Maintenance &amp; sinking fund</span>
+        <span class="mc-val minus">−S$400</span>
+      </div>
+      <div class="mc-row">
+        <span class="mc-label">Property tax (landlord rate)</span>
+        <span class="mc-val minus">−S$708</span>
+      </div>
+      <div class="mc-row">
+        <span class="mc-label">Agent to find/renew tenant</span>
+        <span class="mc-val minus">−S$242</span>
+      </div>
+      <div class="mc-row total">
+        <span class="mc-label">You top up per month</span>
+        <span class="mc-val minus">−S$910</span>
+      </div>
+      <div class="highlight-box hb-blue">
+        <div class="hb-title">Total top-up over 33 months</div>
+        <div class="hb-val">S$30,043</div>
+        <div class="hb-desc">Your tenant covers 83% of your mortgage. You pay the rest — about the cost of a car loan instalment.</div>
       </div>
     </div>
   </div>
 
-  <div style="max-width: 1060px; margin: 0 auto; font-size: 11px; color: var(--muted); line-height: 1.6;">
-    Projections based on URA transaction data (Queens Peak 3BR, May 2021–Apr 2026). Appreciation slope +S$4.23 PSF/month derived from dev-wide 3BR linear regression. Rental estimate S$5,800/month (conservative lower-end; market range S$6,500–S$7,000 for 936 sqft). Property tax non-owner-occupied estimate; actual depends on IRAS assessment. Interest rate 1.4% p.a. flat assumed constant for full tenure. BSD computed under Singapore 2023 enhanced rates. All figures in SGD. Report prepared June 2026.
+  <!-- PHASE 2 -->
+  <div class="money-card mc-teal">
+    <div class="mc-head">
+      <span>🏡</span> Phase 2 — Live There &nbsp;·&nbsp; Jun 2029 to Jun 2030 (12 months)
+    </div>
+    <div class="mc-body">
+      <div class="mc-row">
+        <span class="mc-label">Monthly mortgage</span>
+        <span class="mc-val minus">−S$5,360</span>
+      </div>
+      <div class="mc-row">
+        <span class="mc-label">Maintenance &amp; sinking fund</span>
+        <span class="mc-val minus">−S$400</span>
+      </div>
+      <div class="mc-row">
+        <span class="mc-label">Property tax (owner rate)</span>
+        <span class="mc-val minus">−S$167</span>
+      </div>
+      <div class="mc-row total">
+        <span class="mc-label">Monthly cost to live here</span>
+        <span class="mc-val minus">−S$5,927</span>
+      </div>
+      <div class="highlight-box hb-teal">
+        <div class="hb-title">vs. Renting the same unit</div>
+        <div class="hb-val">S$5,800 – S$7,000/mo</div>
+        <div class="hb-desc">Market rent for this unit is S$5,800–7,000/mo. You live there for S$5,927 — effectively at market rate, but you own it and keep the equity.</div>
+      </div>
+      <div style="margin-top: 14px; padding: 14px; background: var(--mint); border: 1px solid #9dd6cf;">
+        <div style="font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; color: var(--teal); margin-bottom: 4px;">No Stamp Duty Penalty</div>
+        <div style="font-size: 13px; color: #1a4a45;">Seller's Stamp Duty is 0% from June 2029 onwards. You can sell anytime after moving in with no penalty.</div>
+      </div>
+    </div>
   </div>
+
+</div>
+
+<!-- ── PROPERTY VALUE ── -->
+<div class="section-label">How the Property Grows</div>
+<div class="money-card mc-green" style="max-width:960px; margin: 0 auto 24px;">
+  <div class="mc-head">
+    <span>📈</span> Property Appreciation · Jun 2026 → Jun 2030
+  </div>
+  <div class="mc-body" style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+    <div>
+      <div class="mc-row">
+        <span class="mc-label">Price you paid per sqft</span>
+        <span class="mc-val">S$2,244</span>
+      </div>
+      <div class="mc-row">
+        <span class="mc-label">Historical growth (per sqft/month)</span>
+        <span class="mc-val plus">+S$4.23</span>
+      </div>
+      <div class="mc-row">
+        <span class="mc-label">Growth over 48 months</span>
+        <span class="mc-val plus">+S$203 per sqft</span>
+      </div>
+      <div class="mc-row">
+        <span class="mc-label">Estimated price per sqft in Jun 2030</span>
+        <span class="mc-val">S$2,447</span>
+      </div>
+      <div class="mc-row total">
+        <span class="mc-label">Estimated sale price Jun 2030</span>
+        <span class="mc-val plus">S$2,290,045</span>
+      </div>
+    </div>
+    <div>
+      <div class="highlight-box hb-green" style="margin-top: 0;">
+        <div class="hb-title">Property gain in 4 years</div>
+        <div class="hb-val">+S$190,045</div>
+        <div class="hb-desc">Based on Queens Peak's own transaction history showing consistent growth of S$4.23 per sqft every month since 2021.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── FINAL RESULT ── -->
+<div class="section-label">Your Final Result</div>
+<div class="result-banner">
+  <div class="rb-label">What happens when you sell in June 2030</div>
+  <div class="rb-grid">
+    <div class="rb-item">
+      <div class="rb-num">S$151,045</div>
+      <div class="rb-desc">Money in your pocket after paying back the bank, agent fees, and all holding costs over 4 years</div>
+    </div>
+    <div class="rb-item rb-divider">
+      <div class="rb-num">6.27%/yr</div>
+      <div class="rb-desc">Annual return on your own cash invested (S$602,600). Better than CPF OA at 2.5% or most fixed deposits</div>
+    </div>
+    <div class="rb-item rb-divider">
+      <div class="rb-num">S$162,668</div>
+      <div class="rb-desc">Loan principal you've paid down in 45 months — money that becomes yours when you sell</div>
+    </div>
+  </div>
+</div>
+
+<!-- ── NET POSITION WALKTHROUGH ── -->
+<div class="section-label">Where the Profit Comes From</div>
+<div class="money-card mc-green" style="max-width:960px; margin: 0 auto 24px;">
+  <div class="mc-head"><span>🧮</span> How we arrive at S$151,045 profit</div>
+  <div class="mc-body">
+    <div class="mc-row">
+      <span class="mc-label">Sale price (Jun 2030)</span>
+      <span class="mc-val plus">S$2,290,045</span>
+    </div>
+    <div class="mc-row">
+      <span class="mc-label">Less: Agent commission (1%)</span>
+      <span class="mc-val minus">−S$22,900</span>
+    </div>
+    <div class="mc-row">
+      <span class="mc-label">Less: Remaining bank loan</span>
+      <span class="mc-val minus">−S$1,412,332</span>
+    </div>
+    <div class="mc-row">
+      <span class="mc-label">Cash you get from the sale</span>
+      <span class="mc-val neutral">S$854,813</span>
+    </div>
+    <div class="mc-row">
+      <span class="mc-label">Less: Rental period top-up (33 months)</span>
+      <span class="mc-val minus">−S$30,043</span>
+    </div>
+    <div class="mc-row">
+      <span class="mc-label">Less: Own-stay living cost (12 months)</span>
+      <span class="mc-val minus">−S$71,125</span>
+    </div>
+    <div class="mc-row">
+      <span class="mc-label">Less: Your total investment (downpayment + taxes)</span>
+      <span class="mc-val minus">−S$602,600</span>
+    </div>
+    <div class="mc-row total">
+      <span class="mc-label">Your Net Profit</span>
+      <span class="mc-val plus">+S$151,045</span>
+    </div>
+  </div>
+</div>
+
+<!-- ── KEY NUMBERS SUMMARY ── -->
+<div class="section-label">Numbers at a Glance</div>
+<div class="stat-row">
+  <div class="sr">
+    <div class="sr-val" style="color:var(--blue)">S$5,360</div>
+    <div class="sr-lbl">Monthly Mortgage</div>
+    <div class="sr-sub">1.4% fixed · 30-year tenure · Bank loan S$1.575M</div>
+  </div>
+  <div class="sr">
+    <div class="sr-val" style="color:var(--teal)">S$910</div>
+    <div class="sr-lbl">Monthly Top-Up (Phase 1)</div>
+    <div class="sr-sub">What you pay above what your tenant covers</div>
+  </div>
+  <div class="sr">
+    <div class="sr-val" style="color:var(--green)">0%</div>
+    <div class="sr-lbl">Seller Stamp Duty</div>
+    <div class="sr-sub">Penalty-free exit from June 2029 onwards</div>
+  </div>
+</div>
+
+<!-- ── FOOTNOTE ── -->
+<div class="footnote">
+  <strong>Methodology:</strong> Appreciation slope +S$4.23 PSF/month derived from Queens Peak 3BR URA transaction data (May 2021–Apr 2026). Rental estimate S$5,800/month (conservative lower end; live listings show S$6,500–S$7,000/mo for 936 sqft). Property tax non-owner-occupied estimated at S$8,500/year; owner-occupied at S$2,000/year — actual depends on IRAS annual value assessment. Mortgage at 1.4% p.a. flat rate over 30 years assumed constant. BSD calculated under Singapore 2023 enhanced rates. SSD calculated from date of purchase (June 2026). All figures in Singapore Dollars (SGD). Report prepared June 2026 for personal reference only — not financial advice.
+</div>
 
 </main>
 </body>
