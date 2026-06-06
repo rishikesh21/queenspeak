@@ -1,0 +1,375 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Queens Peak — Investment Strategy · June 2026</title>
+<style>
+  :root {
+    --ink: #12202e;
+    --muted: #5a6878;
+    --line: #dde3ea;
+    --paper: #f4f6f9;
+    --panel: #ffffff;
+    --navy: #0c1b33;
+    --slate: #1e3a5f;
+    --sky: #e8f2fc;
+    --blue: #1660a0;
+    --teal: #0a5f6b;
+    --mint: #e8f6f8;
+    --green: #14663a;
+    --leaf: #e6f4ec;
+    --gold: #b07a22;
+    --amber: #fffaed;
+    --red: #a83c28;
+    --rose: #fff2ef;
+    --orange: #e07020;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  /* HERO */
+  .hero {
+    background: linear-gradient(135deg, #071326 0%, #0e2a4a 50%, #0a4560 100%);
+    color: white;
+    padding: 48px 36px 40px;
+  }
+  .wrap { max-width: 1060px; margin: 0 auto; }
+  .eyebrow { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #d4a94a; font-weight: 700; margin-bottom: 12px; }
+  h1 { font-size: clamp(26px, 4vw, 46px); line-height: 1.08; margin-bottom: 10px; font-weight: 800; }
+  .hero-sub { color: rgba(255,255,255,0.68); font-size: 15px; margin-bottom: 30px; }
+  .hero-pills { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 32px; }
+  .pill { background: rgba(255,255,255,0.10); border: 1px solid rgba(255,255,255,0.18); padding: 5px 14px; font-size: 12px; color: rgba(255,255,255,0.85); letter-spacing: 0.04em; }
+  .hero-kpis { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
+  .kpi { border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.07); padding: 16px 14px; }
+  .kpi strong { display: block; font-size: 20px; font-weight: 800; color: #fff; margin-bottom: 3px; }
+  .kpi span { font-size: 11px; color: rgba(255,255,255,0.55); text-transform: uppercase; letter-spacing: 0.06em; }
+
+  /* MAIN */
+  main { padding: 24px 36px 56px; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; max-width: 1060px; margin: 0 auto 16px; }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; max-width: 1060px; margin: 0 auto 16px; }
+  section { background: var(--panel); border: 1px solid var(--line); max-width: 1060px; margin: 0 auto 16px; padding: 24px 26px; }
+  .phase-rental { border-left: 4px solid var(--blue); }
+  .phase-own    { border-left: 4px solid var(--teal); }
+  .phase-exit   { border-left: 4px solid var(--green); }
+  .phase-buy    { border-left: 4px solid var(--gold); }
+  h2 { font-size: 17px; font-weight: 700; margin-bottom: 4px; }
+  .lede { color: var(--muted); font-size: 13px; margin-bottom: 16px; }
+  .badge { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 3px 10px; margin-bottom: 12px; }
+  .badge-blue  { background: var(--sky);  color: var(--blue); }
+  .badge-teal  { background: var(--mint); color: var(--teal); }
+  .badge-green { background: var(--leaf); color: var(--green); }
+  .badge-gold  { background: var(--amber); color: var(--gold); }
+
+  /* TABLES */
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th { background: var(--navy); color: #fff; text-align: left; padding: 9px 10px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.07em; }
+  td { padding: 8px 10px; border-bottom: 1px solid var(--line); }
+  tr:last-child td { border-bottom: none; }
+  .num { text-align: right; font-variant-numeric: tabular-nums; }
+  .pos { color: var(--green); font-weight: 700; }
+  .neg { color: var(--red); font-weight: 700; }
+  .total-row td { background: #f0f4f8; font-weight: 700; border-top: 2px solid var(--line); }
+
+  /* TIMELINE */
+  .timeline { display: flex; align-items: stretch; gap: 0; margin-bottom: 20px; border: 1px solid var(--line); overflow: hidden; }
+  .tl-seg { flex: 1; padding: 14px 16px; position: relative; }
+  .tl-seg-wide { flex: 3; }
+  .tl-blue  { background: var(--sky); border-right: 1px solid var(--line); }
+  .tl-teal  { background: var(--mint); border-right: 1px solid var(--line); }
+  .tl-green { background: var(--leaf); }
+  .tl-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 700; margin-bottom: 4px; }
+  .tl-blue .tl-label  { color: var(--blue); }
+  .tl-teal .tl-label  { color: var(--teal); }
+  .tl-green .tl-label { color: var(--green); }
+  .tl-date  { font-size: 14px; font-weight: 700; margin-bottom: 2px; }
+  .tl-note  { font-size: 11px; color: var(--muted); }
+
+  /* STAT CARDS */
+  .stat-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .sc { border: 1px solid var(--line); padding: 16px; background: var(--paper); }
+  .sc-val { font-size: 22px; font-weight: 800; margin-bottom: 2px; }
+  .sc-lbl { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
+  .sc-sub { font-size: 12px; color: var(--muted); margin-top: 4px; }
+
+  /* VERDICT */
+  .verdict { background: linear-gradient(135deg, #071326 0%, #0e2a4a 100%); color: white; padding: 28px 30px; max-width: 1060px; margin: 0 auto 16px; }
+  .verdict h2 { color: white; font-size: 20px; margin-bottom: 12px; }
+  .verdict-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+  .vg { border-left: 3px solid rgba(255,255,255,0.25); padding-left: 14px; }
+  .vg strong { display: block; font-size: 13px; color: #d4a94a; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.06em; }
+  .vg p { font-size: 13px; color: rgba(255,255,255,0.80); line-height: 1.5; }
+
+  /* PAYMENT TIMELINE */
+  .pay-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border: 1px solid var(--line); overflow: hidden; }
+  .pay-step { padding: 14px 16px; border-right: 1px solid var(--line); }
+  .pay-step:last-child { border-right: none; }
+  .pay-date { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 6px; }
+  .pay-event { font-size: 13px; font-weight: 700; margin-bottom: 4px; }
+  .pay-amount { font-size: 18px; font-weight: 800; color: var(--blue); }
+  .pay-note { font-size: 11px; color: var(--muted); margin-top: 3px; }
+
+  @media (max-width: 700px) {
+    .hero-kpis { grid-template-columns: repeat(2, 1fr); }
+    .grid2, .grid3, .stat-cards, .verdict-grid { grid-template-columns: 1fr; }
+    .pay-steps { grid-template-columns: 1fr 1fr; }
+    .timeline { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="wrap">
+    <div class="eyebrow">Queens Peak · District 03 · Investment Strategy</div>
+    <h1>Buy. Rent. Stay. Exit.</h1>
+    <p class="hero-sub">936 sqft · 3BR · Floor 28 · Dundee Road, Queenstown · 4-Year Horizon · Jun 2026 – Jun 2030</p>
+    <div class="hero-pills">
+      <span class="pill">99-yr Leasehold</span>
+      <span class="pill">Queenstown MRT ~4 min covered</span>
+      <span class="pill">PSF S$2,243 strata</span>
+      <span class="pill">True indoor 850 sqft (90.8% efficiency)</span>
+      <span class="pill">SSD-free from Jun 2029</span>
+    </div>
+    <div class="hero-kpis">
+      <div class="kpi"><strong>S$2,100,000</strong><span>Purchase Price</span></div>
+      <div class="kpi"><strong>S$2,177,600</strong><span>All-In Cost</span></div>
+      <div class="kpi"><strong>S$6,225</strong><span>Monthly Mortgage</span></div>
+      <div class="kpi"><strong>S$160,624</strong><span>Net Profit (4yr)</span></div>
+      <div class="kpi"><strong>6.66%</strong><span>Ann. Return on Cash</span></div>
+    </div>
+  </div>
+</div>
+
+<main>
+
+  <!-- TIMELINE VISUAL -->
+  <section style="padding: 20px 26px;">
+    <div class="wrap" style="max-width:100%">
+      <div class="timeline">
+        <div class="tl-seg tl-blue tl-seg-wide">
+          <div class="tl-label">Phase 1 — Rent Out</div>
+          <div class="tl-date">Jun 2026 → Jun 2029</div>
+          <div class="tl-note">36 months · S$5,800/mo rental · −S$1,775/mo net shortfall</div>
+        </div>
+        <div class="tl-seg tl-teal">
+          <div class="tl-label">Phase 2 — Own Stay</div>
+          <div class="tl-date">Jun 2029 → Jun 2030</div>
+          <div class="tl-note">12 months · SSD 0% · live in your unit</div>
+        </div>
+        <div class="tl-seg tl-green">
+          <div class="tl-label">Exit</div>
+          <div class="tl-date">Jun 2030</div>
+          <div class="tl-note">Sell at S$2,290,045 · Net +S$160,624</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PURCHASE & FINANCING -->
+  <section class="phase-buy">
+    <span class="badge badge-gold">Purchase · Jun 2026</span>
+    <h2>Acquisition & Financing</h2>
+    <p class="lede">1.4% fixed rate · 25-year tenure · Monthly payment S$6,225</p>
+    <div class="grid2" style="max-width:100%; margin: 0 0 0 0;">
+      <table>
+        <thead><tr><th>Fund Source</th><th>%</th><th class="num">Amount</th></tr></thead>
+        <tbody>
+          <tr><td>OTP (1% cash)</td><td>1%</td><td class="num">S$21,000</td></tr>
+          <tr><td>Exercise (4% cash)</td><td>4%</td><td class="num">S$84,000</td></tr>
+          <tr><td>Downpayment — CPF</td><td>~10%</td><td class="num">S$200,000</td></tr>
+          <tr><td>Downpayment — Cash</td><td>~10%</td><td class="num">S$220,000</td></tr>
+          <tr><td>Bank Loan</td><td>75%</td><td class="num">S$1,575,000</td></tr>
+          <tr class="total-row"><td colspan="2">Purchase Total</td><td class="num">S$2,100,000</td></tr>
+        </tbody>
+      </table>
+      <table>
+        <thead><tr><th>Additional Costs</th><th class="num">Amount</th><th>Source</th></tr></thead>
+        <tbody>
+          <tr><td>Buyer Stamp Duty</td><td class="num">S$74,600</td><td>Cash</td></tr>
+          <tr><td>Legal Fee</td><td class="num">S$3,000</td><td>Cash</td></tr>
+          <tr class="total-row"><td>Total Own Funds In</td><td class="num">S$602,600</td><td>Cash + CPF</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <!-- Payment Steps -->
+    <div class="pay-steps" style="margin-top: 16px;">
+      <div class="pay-step">
+        <div class="pay-date">1 Jun 2026</div>
+        <div class="pay-event">Option (OTP)</div>
+        <div class="pay-amount">S$21,000</div>
+        <div class="pay-note">1% cash</div>
+      </div>
+      <div class="pay-step">
+        <div class="pay-date">15 Jun 2026</div>
+        <div class="pay-event">Exercise + Legal</div>
+        <div class="pay-amount">S$87,000</div>
+        <div class="pay-note">4% cash + S$3,000 legal</div>
+      </div>
+      <div class="pay-step">
+        <div class="pay-date">29 Jun 2026</div>
+        <div class="pay-event">Stamp Duty</div>
+        <div class="pay-amount">S$74,600</div>
+        <div class="pay-note">BSD cash</div>
+      </div>
+      <div class="pay-step">
+        <div class="pay-date">~7 Sep 2026</div>
+        <div class="pay-event">Completion</div>
+        <div class="pay-amount">S$420,000</div>
+        <div class="pay-note">CPF S$200K + Cash S$220K · Loan disburses</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="grid2">
+    <!-- PHASE 1 -->
+    <section class="phase-rental" style="margin: 0;">
+      <span class="badge badge-blue">Phase 1 · Jun 2026 – Jun 2029</span>
+      <h2>Rent Out — 36 Months</h2>
+      <p class="lede">Tenant pays S$5,800/mo · You stay rent-free at home</p>
+      <table>
+        <thead><tr><th>Item</th><th class="num">Monthly</th><th class="num">36-Month Total</th></tr></thead>
+        <tbody>
+          <tr><td>Rent Collected</td><td class="num pos">+S$5,800</td><td class="num pos">+S$208,800</td></tr>
+          <tr><td>Mortgage Payment</td><td class="num neg">−S$6,225</td><td class="num neg">−S$224,110</td></tr>
+          <tr><td>Maintenance & Sinking Fund</td><td class="num neg">−S$400</td><td class="num neg">−S$14,400</td></tr>
+          <tr><td>Property Tax (Non-OO)</td><td class="num neg">−S$708</td><td class="num neg">−S$25,500</td></tr>
+          <tr><td>Letting Agent (½ mo/yr)</td><td class="num neg">−S$242</td><td class="num neg">−S$8,700</td></tr>
+          <tr class="total-row"><td>Net Cash Flow</td><td class="num neg">−S$1,775</td><td class="num neg">−S$63,910</td></tr>
+        </tbody>
+      </table>
+      <div class="stat-cards" style="margin-top: 14px;">
+        <div class="sc">
+          <div class="sc-val pos">S$161,228</div>
+          <div class="sc-lbl">Principal (Equity) Built</div>
+        </div>
+        <div class="sc">
+          <div class="sc-val">S$1,413,772</div>
+          <div class="sc-lbl">Loan Remaining (Jun 29)</div>
+        </div>
+        <div class="sc">
+          <div class="sc-val pos">0%</div>
+          <div class="sc-lbl">SSD from Jun 2029</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PHASE 2 -->
+    <section class="phase-own" style="margin: 0;">
+      <span class="badge badge-teal">Phase 2 · Jun 2029 – Jun 2030</span>
+      <h2>Own Stay — 12 Months</h2>
+      <p class="lede">Move in · No SSD liability · Live in your own floor-28 unit</p>
+      <table>
+        <thead><tr><th>Item</th><th class="num">Monthly</th><th class="num">12-Month Total</th></tr></thead>
+        <tbody>
+          <tr><td>Mortgage Payment</td><td class="num neg">−S$6,225</td><td class="num neg">−S$74,703</td></tr>
+          <tr><td>Maintenance & Sinking Fund</td><td class="num neg">−S$400</td><td class="num neg">−S$4,800</td></tr>
+          <tr><td>Property Tax (Owner-Occ.)</td><td class="num neg">−S$167</td><td class="num neg">−S$2,000</td></tr>
+          <tr class="total-row"><td>Total Cost of Living</td><td class="num neg">−S$6,792</td><td class="num neg">−S$81,503</td></tr>
+        </tbody>
+      </table>
+      <div class="stat-cards" style="margin-top: 14px;">
+        <div class="sc">
+          <div class="sc-val">S$1,358,508</div>
+          <div class="sc-lbl">Loan Remaining (Jun 30)</div>
+        </div>
+        <div class="sc">
+          <div class="sc-val pos">S$216,492</div>
+          <div class="sc-lbl">Total Principal Paid (4yr)</div>
+        </div>
+        <div class="sc">
+          <div class="sc-val" style="color: var(--teal)">Floor 28</div>
+          <div class="sc-lbl">936 sqft · City-fringe view</div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- EXIT -->
+  <section class="phase-exit">
+    <span class="badge badge-green">Exit · Jun 2030</span>
+    <h2>Property Value & Net Return</h2>
+    <p class="lede">Dev-wide 3BR appreciation slope: +S$4.23 PSF/month · 48 months total</p>
+    <div class="grid2" style="max-width:100%; margin: 0;">
+      <table>
+        <thead><tr><th>Property Value</th><th class="num">Amount</th></tr></thead>
+        <tbody>
+          <tr><td>Purchase PSF (Jun 2026)</td><td class="num">S$2,243</td></tr>
+          <tr><td>Appreciation (+S$4.23 × 48 mo)</td><td class="num pos">+S$203 PSF</td></tr>
+          <tr><td>Jun 2030 PSF</td><td class="num">S$2,447</td></tr>
+          <tr><td>Jun 2030 Value (× 936 sqft)</td><td class="num">S$2,290,045</td></tr>
+          <tr class="total-row"><td>Gross Gain</td><td class="num pos">+S$190,045</td></tr>
+        </tbody>
+      </table>
+      <table>
+        <thead><tr><th>Net Position</th><th class="num">Amount</th></tr></thead>
+        <tbody>
+          <tr><td>Sale Proceeds</td><td class="num">S$2,290,045</td></tr>
+          <tr><td>Less Agent Fee (1%)</td><td class="num neg">−S$22,900</td></tr>
+          <tr><td>Less Loan Outstanding</td><td class="num neg">−S$1,358,508</td></tr>
+          <tr><td>Net from Sale</td><td class="num">S$908,637</td></tr>
+          <tr><td>Less Phase 1 Shortfall</td><td class="num neg">−S$63,910</td></tr>
+          <tr><td>Less Phase 2 Cost</td><td class="num neg">−S$81,503</td></tr>
+          <tr><td>Less Own Funds Invested</td><td class="num neg">−S$602,600</td></tr>
+          <tr class="total-row"><td>Net Profit</td><td class="num pos">+S$160,624</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="stat-cards" style="margin-top: 16px; grid-template-columns: repeat(4, 1fr);">
+      <div class="sc">
+        <div class="sc-val pos">S$160,624</div>
+        <div class="sc-lbl">Net Profit</div>
+        <div class="sc-sub">After all costs & loan</div>
+      </div>
+      <div class="sc">
+        <div class="sc-val pos">6.66%</div>
+        <div class="sc-lbl">Ann. Return on Cash</div>
+        <div class="sc-sub">On S$602,600 invested</div>
+      </div>
+      <div class="sc">
+        <div class="sc-val pos">S$216,492</div>
+        <div class="sc-lbl">Equity Built (Principal)</div>
+        <div class="sc-sub">Loan repaid in 4 years</div>
+      </div>
+      <div class="sc">
+        <div class="sc-val pos">0%</div>
+        <div class="sc-lbl">Seller Stamp Duty</div>
+        <div class="sc-sub">Past 3-year SSD mark</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VERDICT -->
+  <div class="verdict">
+    <h2>Expert Verdict</h2>
+    <div class="verdict-grid">
+      <div class="vg">
+        <strong>Why It Works</strong>
+        <p>At 1.4% interest, your borrowing cost (S$1,838/mo interest) is far below market rent (S$5,800–7,000/mo). Rental income almost entirely covers the mortgage. You build S$216K in equity while the asset appreciates. SSD window closes naturally at Jun 2029 — no forced timing.</p>
+      </div>
+      <div class="vg">
+        <strong>The Trade-off</strong>
+        <p>Phase 1 runs a S$1,775/month shortfall in cash (after all holding costs). Over 3 years that's S$63,910 you fund from savings. Phase 2 costs S$6,792/month to live. Total additional cash beyond initial S$602,600: ~S$145,413 across 4 years.</p>
+      </div>
+      <div class="vg">
+        <strong>Bottom Line</strong>
+        <p>Buy at S$2.1M. Rent until SSD clears (Jun 2029). Move in for 1 year. Sell Jun 2030. Net profit S$160,624 at 6.66%/yr annualised — comfortably above CPF OA (2.5%) and fixed deposits. Clean, structured, and SSD-free.</p>
+      </div>
+    </div>
+  </div>
+
+  <div style="max-width: 1060px; margin: 0 auto; font-size: 11px; color: var(--muted); line-height: 1.6;">
+    Projections based on URA transaction data (Queens Peak 3BR, May 2021–Apr 2026). Appreciation slope +S$4.23 PSF/month derived from dev-wide 3BR linear regression. Rental estimate S$5,800/month (conservative lower-end; market range S$6,500–S$7,000 for 936 sqft). Property tax non-owner-occupied estimate; actual depends on IRAS assessment. Interest rate 1.4% p.a. flat assumed constant for full tenure. BSD computed under Singapore 2023 enhanced rates. All figures in SGD. Report prepared June 2026.
+  </div>
+
+</main>
+</body>
+</html>
