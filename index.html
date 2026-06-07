@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Queens Peak —  Property Journey · 2026–2030</title>
+<title>Queens Peak — Your Property Journey · 2026–2030</title>
 <style>
   :root {
     --ink: #172332;
@@ -136,7 +136,7 @@
 
   .hero h1 {
     max-width: 740px;
-    font-size: clamp(38px, 6vw, 72px);
+    font-size: 68px;
     font-weight: 900;
     line-height: 0.98;
     margin-bottom: 18px;
@@ -149,7 +149,7 @@
 
   .hero-desc {
     color: rgba(255,255,255,0.74);
-    font-size: clamp(16px, 2vw, 19px);
+    font-size: 18px;
     max-width: 670px;
     margin-bottom: 34px;
   }
@@ -173,7 +173,7 @@
 
   .hs strong {
     display: block;
-    font-size: clamp(24px, 3vw, 34px);
+    font-size: 32px;
     font-weight: 900;
     color: #fff;
     letter-spacing: 0;
@@ -555,7 +555,7 @@
   }
 
   .hb-val {
-    font-size: clamp(24px, 3vw, 32px);
+    font-size: 30px;
     font-weight: 950;
     letter-spacing: 0;
     line-height: 1.08;
@@ -587,7 +587,7 @@
   }
 
   .sr-val {
-    font-size: clamp(25px, 3vw, 34px);
+    font-size: 32px;
     font-weight: 950;
     letter-spacing: 0;
     margin-bottom: 7px;
@@ -651,7 +651,7 @@
   }
 
   .rb-num {
-    font-size: clamp(32px, 4vw, 46px);
+    font-size: 44px;
     font-weight: 950;
     letter-spacing: 0;
     color: #8df3cc;
@@ -736,6 +736,116 @@
     line-height: 1.45;
   }
 
+  /* SSD CHECKPOINT */
+  .ssd-check {
+    display: grid;
+    grid-template-columns: minmax(0, 0.94fr) minmax(0, 1.06fr);
+    gap: 16px;
+    margin: 0 auto 30px;
+  }
+
+  .ssd-panel {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 22px;
+    box-shadow: 0 14px 42px rgba(12,31,52,0.08);
+  }
+
+  .ssd-panel.warn {
+    background: var(--amber);
+    border-color: #f0d8a0;
+  }
+
+  .ssd-kicker {
+    font-size: 11px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.11em;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+
+  .ssd-panel h3 {
+    font-size: 22px;
+    line-height: 1.18;
+    margin-bottom: 10px;
+  }
+
+  .ssd-panel p {
+    color: var(--muted);
+    font-size: 13.5px;
+  }
+
+  .ssd-date {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-top: 18px;
+  }
+
+  .ssd-date div {
+    background: rgba(255,255,255,0.76);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 14px;
+  }
+
+  .ssd-date span {
+    display: block;
+    font-size: 10px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    margin-bottom: 5px;
+  }
+
+  .ssd-date strong {
+    font-size: 17px;
+    line-height: 1.2;
+  }
+
+  .ssd-rate-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    margin-top: 16px;
+  }
+
+  .ssd-rate {
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 12px 10px;
+    background: #fff;
+  }
+
+  .ssd-rate strong {
+    display: block;
+    font-size: 21px;
+    line-height: 1;
+    color: var(--red);
+    margin-bottom: 7px;
+  }
+
+  .ssd-rate span {
+    display: block;
+    font-size: 10.5px;
+    color: var(--muted);
+    line-height: 1.35;
+  }
+
+  .ssd-alert {
+    margin-top: 16px;
+    padding: 14px 16px;
+    border-radius: 8px;
+    background: var(--rose);
+    border: 1px solid #efc0b7;
+    color: #713126;
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
   /* FOOTER */
   .footnote {
     margin: 0 auto;
@@ -754,7 +864,7 @@
     .plain-box { grid-template-columns: 1fr; margin-top: -70px; }
     .plain-box::after { grid-column: 1; grid-row: auto; min-height: 300px; }
     .steps, .pay-timeline { grid-template-columns: repeat(2, 1fr); }
-    .money-grid, .rb-grid, .stat-row { grid-template-columns: 1fr; }
+    .money-grid, .rb-grid, .stat-row, .ssd-check { grid-template-columns: 1fr; }
     .rb-divider {
       border-left: none;
       padding-left: 0;
@@ -781,7 +891,11 @@
     main { padding-bottom: 48px; }
     .hero { padding: 30px 14px 78px; }
     .hero-tag { font-size: 10px; line-height: 1.4; }
-    .hero h1 { font-size: clamp(34px, 11vw, 54px); }
+    .hero h1 { font-size: 43px; }
+    .hero-desc { font-size: 16px; }
+    .hs strong, .sr-val { font-size: 29px; }
+    .hb-val { font-size: 27px; }
+    .rb-num { font-size: 33px; }
     .hero-stats { grid-template-columns: 1fr; }
     .hs { min-height: auto; }
     .visual-frame img { aspect-ratio: 1.2; }
@@ -790,6 +904,7 @@
     .plain-box li { grid-template-columns: 34px 1fr; font-size: 13.5px; }
     .plain-box li::before { width: 34px; height: 34px; }
     .steps, .pay-timeline { grid-template-columns: 1fr; }
+    .ssd-date, .ssd-rate-grid { grid-template-columns: 1fr; }
     .pt { border-right: none; border-bottom: 1px solid var(--line); }
     .pt:last-child { border-bottom: none; }
     .mc-row { grid-template-columns: 1fr; gap: 2px; }
@@ -838,13 +953,13 @@
 
 <!-- ── PLAIN ENGLISH SUMMARY ── -->
 <div class="plain-box">
-  <h3>The Plan</h3>
+  <h3>The Plan in Plain English</h3>
   <ul>
     <li data-icon="🏠">You buy a 3-bedroom unit on the 28th floor of Queens Peak in June 2026. Bank lends you 75%. You put in the rest.</li>
     <li data-icon="🔑">You get the keys in September 2026 and immediately find a tenant who pays S$5,800/month in rent.</li>
     <li data-icon="💸">The rent almost covers your monthly mortgage of S$5,360. You top up only S$910/month extra — less than what many pay in car instalments.</li>
-    <li data-icon="📅">After 3 years (June 2029), government stamp duty clears. You move in and live there for 1 year.</li>
-    <li data-icon="🤝">In June 2030, you sell the unit. Property has appreciated. After paying back the bank and all costs, you pocket S$151,045 in profit.</li>
+    <li data-icon="📅">After 3 years (June 2029), you can move in, but Seller's Stamp Duty has not cleared yet. The 0% SSD date is after the 4-year holding mark.</li>
+    <li data-icon="🤝">Sell on or after 15 June 2030. That keeps SSD at 0%, lets the 4-year strategy complete, and preserves the projected S$151,045 profit.</li>
   </ul>
 </div>
 
@@ -865,15 +980,15 @@
   </div>
   <div class="step">
     <div class="step-dot dot-teal"></div>
-    <div class="step-when">Jun 2029 – Jun 2030</div>
+    <div class="step-when">Jun 2029 – 15 Jun 2030</div>
     <div class="step-what">Move In</div>
-    <div class="step-note">Stamp duty penalty gone. Live in your own floor-28 home.</div>
+    <div class="step-note">Live there, but keep holding. SSD remains 4% until the 4-year mark is crossed.</div>
   </div>
   <div class="step">
     <div class="step-dot dot-green"></div>
-    <div class="step-when">June 2030</div>
+    <div class="step-when">15 Jun 2030+</div>
     <div class="step-what">Sell &amp; Profit</div>
-    <div class="step-note">Property worth ~S$2.29M. Walk away with S$151K profit.</div>
+    <div class="step-note">SSD drops to 0%. Property worth ~S$2.29M. Walk away with S$151K profit.</div>
   </div>
 </div>
 
@@ -903,6 +1018,38 @@
     <div class="pt-action">Completion Day</div>
     <div class="pt-amount">S$420,000</div>
     <div class="pt-note">CPF S$200K + Cash S$220K · Bank releases S$1.575M loan · You get the keys!</div>
+  </div>
+</div>
+
+<!-- ── SSD CHECKPOINT ── -->
+<div class="section-label">Seller's Stamp Duty Checkpoint</div>
+<div class="ssd-check">
+  <div class="ssd-panel warn">
+    <div class="ssd-kicker">Key correction</div>
+    <h3>0% SSD is not in June 2029. It is from 15 June 2030 or later.</h3>
+    <p>Because this purchase is after 4 July 2025, the residential SSD holding period is 4 years. For this model, the acquisition date is assumed to be the OTP exercise date: 15 June 2026.</p>
+    <div class="ssd-date">
+      <div>
+        <span>Assumed acquisition date</span>
+        <strong>15 Jun 2026</strong>
+      </div>
+      <div>
+        <span>Penalty-free sale date</span>
+        <strong>15 Jun 2030+</strong>
+      </div>
+    </div>
+  </div>
+  <div class="ssd-panel">
+    <div class="ssd-kicker">Current post-4 Jul 2025 SSD ladder</div>
+    <div class="ssd-rate-grid">
+      <div class="ssd-rate"><strong>16%</strong><span>Sold within 1 year</span></div>
+      <div class="ssd-rate"><strong>12%</strong><span>More than 1 year and up to 2 years</span></div>
+      <div class="ssd-rate"><strong>8%</strong><span>More than 2 years and up to 3 years</span></div>
+      <div class="ssd-rate"><strong>4%</strong><span>More than 3 years and up to 4 years</span></div>
+    </div>
+    <div class="ssd-alert">
+      If sold before 15 June 2030, the model may still fall inside the 4% SSD band. On a S$2,290,045 sale price, that is about S$91,601, reducing the projected profit from S$151,045 to roughly S$59,444.
+    </div>
   </div>
 </div>
 
@@ -971,7 +1118,7 @@
   <!-- PHASE 2 -->
   <div class="money-card mc-teal">
     <div class="mc-head">
-      <span>🏡</span> Phase 2 — Live There &nbsp;·&nbsp; Jun 2029 to Jun 2030 (12 months)
+      <span>🏡</span> Phase 2 — Live There &nbsp;·&nbsp; Jun 2029 to 15 Jun 2030
     </div>
     <div class="mc-body">
       <div class="mc-row">
@@ -996,8 +1143,8 @@
         <div class="hb-desc">Market rent for this unit is S$5,800–7,000/mo. You live there for S$5,927 — effectively at market rate, but you own it and keep the equity.</div>
       </div>
       <div style="margin-top: 14px; padding: 14px; background: var(--mint); border: 1px solid #9dd6cf;">
-        <div style="font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; color: var(--teal); margin-bottom: 4px;">No Stamp Duty Penalty</div>
-        <div style="font-size: 13px; color: #1a4a45;">Seller's Stamp Duty is 0% from June 2029 onwards. You can sell anytime after moving in with no penalty.</div>
+        <div style="font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; color: var(--teal); margin-bottom: 4px;">SSD Timing Rule</div>
+        <div style="font-size: 13px; color: #1a4a45;">Moving in does not remove SSD. The clean exit is tied to holding period: sell on or after 15 June 2030 for 0% SSD.</div>
       </div>
     </div>
   </div>
@@ -1046,7 +1193,7 @@
 <!-- ── FINAL RESULT ── -->
 <div class="section-label">Your Final Result</div>
 <div class="result-banner">
-  <div class="rb-label">What happens when you sell in June 2030</div>
+  <div class="rb-label">What happens when you sell on or after 15 June 2030</div>
   <div class="rb-grid">
     <div class="rb-item">
       <div class="rb-num">S$151,045</div>
@@ -1069,7 +1216,7 @@
   <div class="mc-head"><span>🧮</span> How we arrive at S$151,045 profit</div>
   <div class="mc-body">
     <div class="mc-row">
-      <span class="mc-label">Sale price (Jun 2030)</span>
+      <span class="mc-label">Sale price (15 Jun 2030 or later)</span>
       <span class="mc-val plus">S$2,290,045</span>
     </div>
     <div class="mc-row">
@@ -1119,13 +1266,13 @@
   <div class="sr">
     <div class="sr-val" style="color:var(--green)">0%</div>
     <div class="sr-lbl">Seller Stamp Duty</div>
-    <div class="sr-sub">Penalty-free exit from June 2029 onwards</div>
+    <div class="sr-sub">Penalty-free exit from 15 June 2030 onwards</div>
   </div>
 </div>
 
 <!-- ── FOOTNOTE ── -->
 <div class="footnote">
-  <strong>Methodology:</strong> Appreciation slope +S$4.23 PSF/month derived from Queens Peak 3BR URA transaction data (May 2021–Apr 2026). Rental estimate S$5,800/month (conservative lower end; live listings show S$6,500–S$7,000/mo for 936 sqft). Property tax non-owner-occupied estimated at S$8,500/year; owner-occupied at S$2,000/year — actual depends on IRAS annual value assessment. Mortgage at 1.4% p.a. flat rate over 30 years assumed constant. BSD calculated under Singapore 2023 enhanced rates. SSD calculated from date of purchase (June 2026). All figures in Singapore Dollars (SGD). Report prepared June 2026 for personal reference only — not financial advice.
+  <strong>Methodology:</strong> Appreciation slope +S$4.23 PSF/month derived from Queens Peak 3BR URA transaction data (May 2021–Apr 2026). Rental estimate S$5,800/month (conservative lower end; live listings show S$6,500–S$7,000/mo for 936 sqft). Property tax non-owner-occupied estimated at S$8,500/year; owner-occupied at S$2,000/year — actual depends on IRAS annual value assessment. Mortgage at 1.4% p.a. flat rate over 30 years assumed constant. BSD calculated under Singapore 2023 enhanced rates. SSD based on IRAS post-4 Jul 2025 residential rules: 0% only after more than 4 years. This model assumes acquisition on 15 Jun 2026 and a sale on or after 15 Jun 2030. All figures in Singapore Dollars (SGD). Report prepared June 2026 for personal reference only — not financial advice.
 </div>
 
 </main>
